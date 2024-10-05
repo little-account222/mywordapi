@@ -10,9 +10,9 @@ db = SQLAlchemy(app)
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     task = db.Column(db.String(100), nullable=False)
-
-# 创建数据库和表
-db.create_all()
+@app.route("/")
+def main():
+    db.create_all()
 
 # 添加待办事项路由（使用GET方法）
 @app.route('/add', methods=['GET'])
