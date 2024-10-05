@@ -13,6 +13,7 @@ class Todo(db.Model):
 @app.route("/")
 def main():
     db.create_all()
+    return "ok"
 
 # 添加待办事项路由（使用GET方法）
 @app.route('/add', methods=['GET'])
