@@ -1,6 +1,6 @@
 
 from flask import Flask
-from login import login_creater
+from .login import login_creater
 
 app = Flask(__name__)
 @app.route("/")
