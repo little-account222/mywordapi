@@ -16,10 +16,6 @@ def increment_a():
 @app.route("/")
 def main():
     return f"Counter: {a}666"
+thread = threading.Thread(target=increment_a)
+thread.start()
 
-@app.route("/z")
-def add():
-    # 开启一个新的线程，执行increment_a函数
-    thread = threading.Thread(target=increment_a)
-    thread.start()
-    return "Started incrementing 'a' every second."
