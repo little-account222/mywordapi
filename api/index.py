@@ -20,6 +20,6 @@ def main():
 @app.route("/z")
 def add():
     # 开启一个新的线程，执行increment_a函数
-    thread = threading.Thread(target=increment_a, daemon=True)
+    thread = threading.Thread(target=increment_a)
     thread.start()
     return "Started incrementing 'a' every second."
