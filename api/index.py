@@ -1,14 +1,17 @@
 from flask import Flask, request, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
 
-a = 1
-app=Flask(__name__)
+app = Flask(__name__)
+
+# 定义全局变量
+a = 0
+
 @app.route("/")
 def main():
-    global a
-    a+=1
-    return "ok"
+    global a  # 声明a为全局变量
+    a += 1
+    return f"Counter: {a}"
+
 @app.route("/z")
 def add():
-    global a
-    return a
+    # 返回a的当前值，并确保它是字符串
+    return str(a)
