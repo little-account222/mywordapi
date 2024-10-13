@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, make_response, render_template
-from codemao import login
+from .codemao import login
 
 login_creater = Blueprint('login', __name__)
 
