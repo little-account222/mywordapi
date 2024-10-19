@@ -5,9 +5,8 @@ def askYesNot(text):
 
 def showError(message, info):
     print(f"\033[1;7;91m错误\033[0;1;91m：{message}\033[0m")
-    if askYesNot("是否查看更多信息？"):
-        print(info)
-        input("按下回车键退出程序")
+
+    print(info)
     raise
 
 def randomBlockID():
