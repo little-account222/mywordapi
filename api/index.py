@@ -33,7 +33,7 @@ def main():
 
 
 @app.route("/z")
-def z():
+def zrrr():
   return "6666"
 app.register_blueprint(login_creater, url_prefix='/login')
 app.json.ensure_ascii = False
