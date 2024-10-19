@@ -1,5 +1,3 @@
-import tkinter
-from tkinter import filedialog
 from Log import WARNING, ERROR
 import Log
 
@@ -66,33 +64,6 @@ class CommandLineUserInterface:
                 return
             else:
                 operations[choice]["function"]()
-
-    def askFilePath(self, message="请选择一个文件", fileTypes=(), default=None):
-        root = tkinter.Tk()
-        root.title(message)
-        path = filedialog.askopenfilename(filetypes=fileTypes, title=message)
-        root.destroy()
-        if default is not None and path == "":
-            return default
-        return path
-
-    def askDirectory(self, message="请选择一个文件夹", default=None):
-        root = tkinter.Tk()
-        root.title(message)
-        path = filedialog.askdirectory(title=message)
-        root.destroy()
-        if default is not None and path == "":
-            return default
-        return path
-
-    def askSaveFilePath(self, message="请选择文件保存位置", defaultType=None, fileTypes=(), default=None):
-        root = tkinter.Tk()
-        root.title(message)
-        path = filedialog.asksaveasfilename(defaultextension=defaultType, filetypes=fileTypes, title=message)
-        root.destroy()
-        if default is not None and path == "":
-            return default
-        return path
 
     def showLog(self, log):
         if log.level == WARNING:
