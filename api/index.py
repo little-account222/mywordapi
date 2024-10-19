@@ -1,7 +1,7 @@
 
 from flask import Flask
 from .login import login_creater
-from ...Kitten_4 Decompiler_main.Kitten_4 Decompiler_main import Main
+from ...Kitten_4 Decompiler_main import Main
 
 app = Flask(__name__)
 @app.route("/")
