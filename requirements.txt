@@ -2,4 +2,4 @@ Flask==3.0.3
 requests==2.32.0
 Jinja2==3.1.4
 werkzeug==3.0.4
-tkinter==8.6
+
