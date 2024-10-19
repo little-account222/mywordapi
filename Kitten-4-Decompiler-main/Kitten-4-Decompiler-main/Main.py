@@ -9,10 +9,10 @@ from Tool import showError
 from UI import *
 from HTTP import HTTP
 
-def main():
+def main(workid):
     printMetaData()
 
-    workID = UI.askInteger("请输入要反编译的作品 ID")
+    workID = workid
 
     workInfo = getWorkInfo(workID)
     log(INFO, f"成功获取作品 \033[4;32m{workInfo['name']}\033[0m 的信息。")
