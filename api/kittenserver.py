@@ -22,5 +22,5 @@ def get_work_code():
         yield json_string.encode('utf-8')
 
     return Response(generate(), mimetype='application/octet-stream', headers={
-        'Content-Disposition': 'attachment; filename=data.bcmc'
+        'Content-Disposition': 'attachment; filename=data.bcm4'
     })
