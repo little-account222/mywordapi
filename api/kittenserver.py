@@ -18,7 +18,7 @@ kitten_creater = Blueprint('kitten', __name__)
 
 
 
-@kitten_creater.route('/get_work',methods=['GET'])
+@kitten_creater.route('/get_work/more/',methods=['GET'])
 def get_work_code():
     token = request.cookies.get('token')
     if token is None or request.args.get('workid') is None:
