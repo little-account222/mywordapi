@@ -16,5 +16,4 @@ kitten_creater = Blueprint('kitten', __name__)
 @kitten_creater.route('/get_work',methods=['GET'])
 def get_work_code():
     file_content = Main.main(request.args.get('workid'))
-    mime_type = 'text/plain'
-    return Response(file_content, mimetype=mime_type)
+    return file_content
