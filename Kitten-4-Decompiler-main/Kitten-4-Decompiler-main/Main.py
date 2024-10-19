@@ -9,10 +9,10 @@ from Tool import showError
 from UI import *
 from HTTP import HTTP
 
-def main(workid):
+def main():
     printMetaData()
 
-    workID = workid
+    workID = UI.askInteger("请输入要反编译的作品 ID")
 
     workInfo = getWorkInfo(workID)
     log(INFO, f"成功获取作品 \033[4;32m{workInfo['name']}\033[0m 的信息。")
@@ -46,41 +46,5 @@ def main(workid):
         decompiler.start()
     except:
         showError("反编译失败。", traceback.format_exc())
-    saveSourceCode(compiledWork, workInfo["type"])
+    return compiledWork
 
-def saveSourceCode(sourceCode, type):
-    input("按下回车键保存源码")
-    defaultType = {
-        "KITTEN4": ".bcm4",
-        "KITTEN3": ".bcm",
-        "KITTEN2": ".bcm",
-        "COCO": ".json"
-    }[type]
-    fileTypes = {
-        "KITTEN4": (("Kitten 4 源码文件", ".bcm4"), ("Kitten 源码文件", ".bcm"), ("所有文件", ".*")),
-        "KITTEN3": (("Kitten 源码文件", ".bcm"), ("所有文件", ".*")),
-        "KITTEN2": (("Kitten 源码文件", ".bcm"), ("所有文件", ".*")),
-        "COCO": (("CoCo 源码文件", ".json"), ("所有文件", ".*"))
-    }[type]
-    while True:
-        path = UI.askSaveFilePath(defaultType=defaultType, fileTypes=fileTypes)
-        if path == "":
-            if UI.askYesNot("要取消保存文件吗？"):
-                print("已取消保存文件")
-                return
-        else:
-            print(f"正在将源码保存到文件 \033[4m{path}\033[0m ……")
-            try:
-                with open(path, "w") as file:
-                    json.dump(sourceCode, file)
-                input("文件保存成功，按下回车键退出程序")
-                return
-            except Exception:
-                traceback.print_exc()
-                log(ERROR, "保存失败，请尝试选择新的保存位置。")
-
-if __name__ == "__main__":
-    try:
-        main()
-    except Exception:
-        pass
