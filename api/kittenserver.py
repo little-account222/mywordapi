@@ -2,7 +2,7 @@
 import os
 import sys
 from flask import Blueprint, request, jsonify, make_response, render_template
-from api.codemao import login, get_user_detail
+from .codemao import login, get_user_detail
 
 current_file_path = os.path.abspath(__file__)
 current_dir_path = os.path.dirname(current_file_path)
