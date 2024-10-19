@@ -3,8 +3,7 @@ import os
 import sys
 from flask import Blueprint, request, jsonify, make_response, render_template, Response
 from api.codemao import login, get_user_detail
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
+
 
 import json
 current_file_path = os.path.abspath(__file__)
@@ -18,16 +17,12 @@ import Main
 kitten_creater = Blueprint('kitten', __name__)
 
 
-limiter = Limiter(
-    key_func=get_remote_address,
-    default_limits=["200 per day", "50 per hour"]
-)
+
 @kitten_creater.route('/get_work',methods=['GET'])
-@limiter.limit("5 per hour")
 def get_work_code():
     token = request.cookies.get('token')
-    if token is None:
-        return jsonify({'active':'failed','msg':'请先登录'})
+    if token is None or request.args.get('workid') is None:
+        return jsonify({'active':'failed','msg':'用户未登录或参数缺失'})
     try:
         if get_user_detail(token)['nickname'] != '':
             file_content = Main.main(request.args.get('workid'))
@@ -41,4 +36,3 @@ def get_work_code():
             })
     except KeyError:
         return jsonify({'active':'failed','msg':'登录过期，重新登录'})
-
