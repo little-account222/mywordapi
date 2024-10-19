@@ -1,8 +1,8 @@
 import sys
 import os
 from flask import Flask
-from .login import login_creater
-from .kittenserver import kitten_creater
+from login import login_creater
+from kittenserver import kitten_creater
 
 app = Flask(__name__)
 app.register_blueprint(login_creater, url_prefix='/login')
