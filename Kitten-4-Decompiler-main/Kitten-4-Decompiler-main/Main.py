@@ -8,7 +8,7 @@ from MetaData import *
 from Tool import showError
 from UI import *
 from HTTP import HTTP
-INFO = 10
+
 def main(workid):
     printMetaData()
 
@@ -28,6 +28,8 @@ def main(workid):
             "KITTEN2": KittenWorkDecompiler,
             "COCO": CoCoWorkDecompiler,
         }[workInfo["type"]](workInfo, compiledWork)
+        INFO = 10
+        VERBOSE = 10
         decompiler.onStart = lambda: log(INFO, f"开始反编译，作品名称：\033[4;32m{workInfo['name']}\033[0m。")
         def setActorLog(actor):
             actor.onPrepare = lambda: log(VERBOSE, f"正在准备角色 \033[4;32m{actor.actor['name']}\033[0m……")
