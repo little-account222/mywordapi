@@ -10,7 +10,7 @@ app.register_blueprint(kitten_creater, url_prefix='/kitten')
 app.json.ensure_ascii = False
  
 @app.route("/") 
-def main(): 
+def main():  
     return '服务器正常运行中' 
  
  
