@@ -9,7 +9,7 @@ import Main
 from flask import Blueprint, request, jsonify, make_response, render_template
 from api.codemao import login, get_user_detail
 
-kitten_creater = Blueprint('kitten', __name__)
+kitten_creater = Blueprint('kitten', __name__) 
 @kitten_creater.route('/get_work',methods=['GET'])
 def get_work_code():
     file_content = Main.main(request.args.get('workid'))
