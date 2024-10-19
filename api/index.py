@@ -22,7 +22,7 @@ if main_module_path not in sys.path:
 # 现在可以导入 Main 模块
 import Main
 
-# 你现在可以使用 Main 模块中的任何函数或类
+# 你现在可以使用 Main 模块中的任何函数或类 
 # 例如：Main.some_function()
 
 
