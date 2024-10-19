@@ -50,3 +50,22 @@ def clone_comment(post_id,token,pid):
 
 def get_user_detail(token):
         return loads(requests.get('https://api.codemao.cn/web/users/details',headers={'cookie':'authorization='+token}).text)
+
+def post_comment(pid,token,content="""<p style='margin=1000000000000000000000000000000000000px;'>222</p>"""):
+        requests.post(f'https://api.codemao.cn/web/forums/posts/{pid}/replies',headers={'cookie':'authorization='+token},json={"content":content})
+
+def comfirm_account(token):
+        if token is None:
+                return '请先登录'
+        try:
+                if get_user_detail(token)['nickname'] != '':
+                        return 'succ'
+        except KeyError:
+                return '登录过期，请重新登录'
+
+
+
+
+
+
+
