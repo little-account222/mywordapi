@@ -8,21 +8,18 @@ from MetaData import *
 from Tool import showError
 from UI import *
 from HTTP import HTTP
-
+INFO = "222"
 def main(workid):
     printMetaData()
 
     workID = workid
 
     workInfo = getWorkInfo(workID)
-    log(INFO, f"成功获取作品 \033[4;32m{workInfo['name']}\033[0m 的信息。")
-    log(INFO, f"该作品由 \033[4;94m{workInfo['type']}\033[0m {workInfo['version']} 版本制作")
+
 
     compiledWorkURL = getCompiledWorkURL(workInfo)
-    log(INFO, f"成功获取作品 \033[4;32m{workInfo['name']}\033[0m 的编译文件 URL。")
 
     compiledWork = HTTP.getJSON(compiledWorkURL)
-    log(INFO, f"成功获取作品 \033[4;32m{workInfo['name']}\033[0m 的编译文件。")
 
     try:
         decompiler = {
