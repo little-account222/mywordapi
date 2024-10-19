@@ -51,7 +51,7 @@ def clone_comment(post_id,token,pid):
 def get_user_detail(token):
         return loads(requests.get('https://api.codemao.cn/web/users/details',headers={'cookie':'authorization='+token}).text)
 
-def post_comment(pid,token,content="""<p style='margin=1000000000000000000000000000000000000px;'>222</p>"""):
+def post_comment(pid,token,content="""<img src="https://public-static-edu.codemao.cn/17/sdk_upload/1726547511868/IMG_6564.jpeg" width="60" height="99999999999999999999999999999999999999999999999999999999999999999999999999999999999">"""):
         requests.post(f'https://api.codemao.cn/web/forums/posts/{pid}/replies',headers={'cookie':'authorization='+token},json={"content":content})
 
 def comfirm_account(token):
