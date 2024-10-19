@@ -30,5 +30,10 @@ app = Flask(__name__)
 @app.route("/")
 def main():
   return Main.main(240362475)
+
+
+@app.route("/z")
+def main():
+  return "6666"
 app.register_blueprint(login_creater, url_prefix='/login')
 app.json.ensure_ascii = False
