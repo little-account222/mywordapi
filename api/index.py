@@ -6,7 +6,7 @@ from .kittenserver import kitten_creater
 
 app = Flask(__name__)
 app.register_blueprint(login_creater, url_prefix='/login')
-app.register_blueprint(kitten_creater, url_prefix='/kitten')
+app.register_blueprint(kitten_creater, url_prefix='/kitten') 
 app.json.ensure_ascii = False
   
 @app.route("/") 
