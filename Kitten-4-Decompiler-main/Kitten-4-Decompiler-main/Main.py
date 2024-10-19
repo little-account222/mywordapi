@@ -6,7 +6,7 @@ from KittenDecompiler import KittenWorkDecompiler
 from CoCoDecompiler import CoCoWorkDecompiler
 from MetaData import *
 from Tool import showError
-from UI import *
+
 from HTTP import HTTP
 
 def main():
@@ -15,14 +15,10 @@ def main():
     workID = UI.askInteger("请输入要反编译的作品 ID")
 
     workInfo = getWorkInfo(workID)
-    log(INFO, f"成功获取作品 \033[4;32m{workInfo['name']}\033[0m 的信息。")
-    log(INFO, f"该作品由 \033[4;94m{workInfo['type']}\033[0m {workInfo['version']} 版本制作")
 
     compiledWorkURL = getCompiledWorkURL(workInfo)
-    log(INFO, f"成功获取作品 \033[4;32m{workInfo['name']}\033[0m 的编译文件 URL。")
 
     compiledWork = HTTP.getJSON(compiledWorkURL)
-    log(INFO, f"成功获取作品 \033[4;32m{workInfo['name']}\033[0m 的编译文件。")
 
     try:
         decompiler = {
@@ -45,6 +41,7 @@ def main():
         decompiler.onFinish = lambda: log(INFO, "反编译完成。")
         decompiler.start()
     except:
-        showError("反编译失败。", traceback.format_exc())
+        pass
+
     return compiledWork
 
