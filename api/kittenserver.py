@@ -4,6 +4,8 @@ import sys
 from flask import Blueprint, request, jsonify, make_response, render_template, Response
 from api.codemao import login, get_user_detail
 from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+
 import json
 current_file_path = os.path.abspath(__file__)
 current_dir_path = os.path.dirname(current_file_path)
@@ -18,10 +20,11 @@ kitten_creater = Blueprint('kitten', __name__)
 
 limiter = Limiter(
     kitten_creater,
+    key_func=get_remote_address,
     default_limits=["200 per day", "50 per hour"]
 )
 @kitten_creater.route('/get_work',methods=['GET'])
-@limiter.limit("1 per hour")
+@limiter.limit("5 per hour")
 def get_work_code():
     token = request.cookies.get('token')
     if token is None:
