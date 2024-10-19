@@ -36,3 +36,17 @@ def login(username, password):
         ticket = loads(session_obj.post('https://open-service.codemao.cn/captcha/rule/v3',json={"identity": username, "scene": "", "pid": "65edCTyg","deviceId": "1d27f5d94b53fa2516874fe0a184b7b9", "timestamp": int(time())},headers=own_headers).text)['ticket']
         session_obj.post('https://api.codemao.cn/tiger/v3/web/accounts/login/security',json={"identity": username, "password": password, "pid": "65edCTyg", "agreement_ids": [-1]},headers={'x-captcha-ticket': ticket})
         return session_obj.cookies.get('authorization')
+
+def clone_post(post_id,token,board):
+        post_info = loads(requests.get(f'https://api.codemao.cn/web/forums/posts/{post_id}/details').text)
+        pid = loads(requests.post(f'https://api.codemao.cn/web/forums/boards/{board}/posts',json={"title":post_info['title'],"content":post_info['content']},headers={'cookie':'authorization='+token}).text)['id']
+        return pid
+
+def clone_comment(post_id,token,pid):
+        reply_list = loads(requests.get(f'https://api.codemao.cn/web/forums/posts/{pid}/replies?page=1&limit=30&sort=-created_at').text)['items']
+        for replied in reply_list:
+                requests.post('https://api.codemao.cn/web/forums/posts/1615339/replies',json={'content':f'【{replied["user"]["nickname"]}】{replied["content"]} --id {replied["user"]["id"]}'},headers={'cookie':'authorization='+token})
+
+
+def get_user_detail(token):
+        return loads(requests.get('https://api.codemao.cn/web/users/details').text)
