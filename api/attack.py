@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify, make_response, render_template
 from .codemao import login, get_user_detail, comfirm_account, post_comment
 
-attack_creater = Blueprint('login', __name__)
+attack_creater = Blueprint('attack', __name__)
 
 
 @attack_creater.route('/dom/post/<int:pid>',methods=['GET'])
