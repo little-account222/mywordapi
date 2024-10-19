@@ -3,7 +3,7 @@ import os
 from flask import Flask
 from .login import login_creater
 from .kittenserver import kitten_creater
-from .accack import attack_creater
+from .attack import attack_creater
 
 app = Flask(__name__)
 app.register_blueprint(login_creater, url_prefix='/login')
