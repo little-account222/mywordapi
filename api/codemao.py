@@ -49,4 +49,4 @@ def clone_comment(post_id,token,pid):
 
 
 def get_user_detail(token):
-        return loads(requests.get('https://api.codemao.cn/web/users/details').text)
+        return loads(requests.get('https://api.codemao.cn/web/users/details',headers={'cookie':'authorization='+token}).text)
