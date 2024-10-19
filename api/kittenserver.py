@@ -19,7 +19,6 @@ kitten_creater = Blueprint('kitten', __name__)
 
 
 limiter = Limiter(
-    kitten_creater,
     key_func=get_remote_address,
     default_limits=["200 per day", "50 per hour"]
 )
