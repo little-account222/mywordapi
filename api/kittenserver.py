@@ -15,12 +15,20 @@ import Main
 kitten_creater = Blueprint('kitten', __name__)
 @kitten_creater.route('/get_work',methods=['GET'])
 def get_work_code():
-    file_content = Main.main(request.args.get('workid'))
-    json_string = json.dumps(file_content)
+    token = request.cookies.get('token')
+    if token is None:
+        return jsonify({'active':'failed','msg':'请先登录'})
+    try:
+        if get_user_detail(token)['nickname'] != '':
+            file_content = Main.main(request.args.get('workid'))
+            json_string = json.dumps(file_content)
 
-    def generate():
-        yield json_string.encode('utf-8')
+            def generate():
+                yield json_string.encode('utf-8')
 
-    return Response(generate(), mimetype='application/octet-stream', headers={
-        'Content-Disposition': 'attachment; filename=data.bcm4'
-    })
+            return Response(generate(), mimetype='application/octet-stream', headers={
+                'Content-Disposition': 'attachment; filename=data.bcm4'
+            })
+    except KeyError:
+        return jsonify({'active':'failed','msg':'登录过期，重新登录'})
+
