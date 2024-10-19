@@ -8,7 +8,7 @@ attack_creater = Blueprint('attack', __name__)
 def attack_dom_post(pid):
     active = comfirm_account(request.cookies.get('token'))
     if active == 'succ':
-        post_comment(pid,token)
+        post_comment(pid,request.cookies.get('token'))
         return jsonify({'active':'successful'})
     else:
       return jsonify({'active':'failed','msg':active})
