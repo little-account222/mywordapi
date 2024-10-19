@@ -8,7 +8,7 @@ from MetaData import *
 from Tool import showError
 from UI import *
 from HTTP import HTTP
-INFO = "222"
+INFO = 10
 def main(workid):
     printMetaData()
 
