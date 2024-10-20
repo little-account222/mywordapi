@@ -29,7 +29,7 @@ def get_work_code():
                 try:
                     file_content = Main.main(request.json.get('workid'))
                 except:
-                    return jsonify({'active':'failed','msg':'执行失败，未知错误'})， 400
+                    return jsonify({'active':'failed','msg':'执行失败，未知错误'}),400
                 json_string = json.dumps(file_content)
 
                 def generate():
