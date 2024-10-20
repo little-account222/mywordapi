@@ -168,7 +168,7 @@ button:hover {
             showMessage('Login failed: ' + data.msg, 'error');
         } else {
             showMessage('Login successful!', 'success');
-            // 这里可以添加登录成功后的逻辑，例如重定向到主页
+           window.location.replace("https://dianmao.fantasywork.us.kg/kitten/get_work/");
         }
     })
     .catch(error => {
