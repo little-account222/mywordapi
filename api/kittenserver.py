@@ -38,4 +38,4 @@ def get_work_code():
         except KeyError:
             return jsonify({'active':'failed','msg':'登录过期，重新登录'})
     else:
-        render_template('get_work.html')
+        return render_template('get_work.html')
