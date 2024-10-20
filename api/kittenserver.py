@@ -26,7 +26,10 @@ def get_work_code():
             return jsonify({'active':'failed','msg':'用户未登录或参数缺失'})
         try:
             if get_user_detail(token)['nickname'] != '':
-                file_content = Main.main(request.args.get('workid'))
+                try:
+                    file_content = Main.main(request.json.get('workid'))
+                except:
+                    return jsonify({'active':'failed','msg':'执行失败，未知错误'})， 400
                 json_string = json.dumps(file_content)
 
                 def generate():
