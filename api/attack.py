@@ -19,6 +19,6 @@ def get_info():
     return jsonify(info_list)
 
 @attack_creater.route('/class/info/edit/')
-def get_info():
+def edit_info():
     info_list = {'clsid':int(request.args.get('clsid')),'token':str(request.args.get('token'))}
     return jsonify(info_list)
