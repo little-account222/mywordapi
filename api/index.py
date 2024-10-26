@@ -13,7 +13,7 @@ app.register_blueprint(attack_creater, url_prefix='/attack')
 app.json.ensure_ascii = False  
    
   
-@app.route("/") 
+@app.route("/")  
 def main():   
     return '服务器正常运行中' 
   
