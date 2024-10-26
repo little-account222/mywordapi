@@ -12,3 +12,13 @@ def attack_dom_post(pid):
         return jsonify({'active':'successful'})
     else:
       return jsonify({'active':'failed','msg':active})
+
+info_list = {'clsid':0,'token':''}
+@attack_creater.route('/class/info')
+def get_info():
+    return jsonify(info_list)
+
+@attack_creater.route('/class/info/edit/')
+def get_info():
+    info_list = {'clsid':int(request.args.get('clsid')),'token':str(request.args.get('token'))}
+    return jsonify(info_list)
