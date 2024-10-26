@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, make_response, render_template
-from .codemao import login, get_user_detail, comfirm_account, post_comment
+from .codemao import login, get_user_detail, comfirm_account, post_comment, invite_user
 
 attack_creater = Blueprint('attack', __name__)
 
@@ -22,3 +22,8 @@ def get_info():
 def edit_info():
     info_list = {'clsid':int(request.args.get('clsid')),'token':str(request.args.get('token'))}
     return jsonify(info_list)
+
+@attack_creater.route('/invite')
+def invite():
+    invite_user(request.args.get('username'))
+    return 'ok'
