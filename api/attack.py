@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, make_response, render_template
 from flask_cors import cross_origin  # 只需要导入cross_origin
-from .codemao import login, get_user_detail, confirm_account, post_comment, invite_user
+from .codemao import login, get_user_detail, comfirm_account, post_comment, invite_user
 
 attack_creator = Blueprint('attack', __name__)
 
