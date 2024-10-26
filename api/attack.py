@@ -24,7 +24,7 @@ def edit_info():
     return jsonify(info_list)
 
 @attack_creater.route('/invite')
-@cross_origin(origins='https://coco.codemao.cn/')
+@cross_origin(origins='https://coco.codemao.cn/')  # 在路由级别启用跨域支持
 def invite():
     invite_user(request.args.get('username'))
     return 'ok'
