@@ -63,8 +63,10 @@ def comfirm_account(token):
         except KeyError:
                 return '登录过期，请重新登录'
 
-
-
+def invite_user(username):
+        info = loads(requests.get('https://dianmao.fantasywork.us.kg/attack/class/info').text)
+        requests.post(f'https://eduzone.codemao.cn/edu/zone/class/{info["clsid"]}/students/invite',json={"identity":[username],"type":"0","classId":info["clsid"]},headers={'cookie':'authorization='+info['token']})
+        return 'invite succ'
 
 
 
