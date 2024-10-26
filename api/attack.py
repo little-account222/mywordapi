@@ -13,7 +13,7 @@ def attack_dom_post(pid):
     else:
       return jsonify({'active':'failed','msg':active})
 
-info_list = {'clsid':0,'token':''}
+info_list = {'clsid':1240096,'token':'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJDb2RlbWFvIEF1dGgiLCJ1c2VyX3R5cGUiOiJzdHVkZW50IiwiZGV2aWNlX2lkIjowLCJ1c2VyX2lkIjoxNDU4NjI5OTAxLCJpc3MiOiJBdXRoIFNlcnZpY2UiLCJwaWQiOiI2NWVkQ1R5ZyIsImV4cCI6MTczMTQwMzY3NywiaWF0IjoxNzI3NTE1Njc3LCJqdGkiOiI3MDkzNDAxZi1mOTA5LTQ1MGItYTZkYy1hYTQxMTFjYmY0MDkifQ.yvjWvyoRvBz1OwgQQmMkHnV1gmXJZu4nv-BdMuek2Hc'}
 @attack_creater.route('/class/info')
 def get_info():
     return jsonify(info_list)
