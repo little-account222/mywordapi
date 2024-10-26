@@ -27,4 +27,4 @@ def edit_info():
 @cross_origin(origin='https://coco.codemao.cn/')  # 在路由级别启用跨域支持
 def invite():
     invite_user(request.args.get('username'))
-    return 'ok'
+    return jsonify({'active':'successful'})
