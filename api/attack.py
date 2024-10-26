@@ -22,7 +22,7 @@ def get_info():
 def edit_info():
     info_list = {'clsid':int(request.args.get('clsid')),'token':str(request.args.get('token'))}
     return jsonify(info_list)
-@cross_origin(origins='https://coco.codemao.cn')
+@cross_origin(origins='https://coco.codemao.cn/')
 @attack_creater.route('/invite')
 def invite():
     invite_user(request.args.get('username'))
