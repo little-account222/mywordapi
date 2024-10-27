@@ -258,11 +258,11 @@
         }
 
         function decompile() {
-            alert("源码反编译功能已触发！\n这里可以添加实际的反编译逻辑。");
+            
         }
 
         function openCharityAccounts() {
-            alert("公益账号库功能已触发！\n这里可以添加打开公益账号库的逻辑。");
+            showToast('该功能正在制作中。', '#ff4d4d');
         }
 
         // 添加装饰元素
