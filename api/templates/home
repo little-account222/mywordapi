@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人介绍 - 炫酷版</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            color: #ffffff;
+            height: 100%;
+            overflow: hidden;
+            background: #000000;
+        }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            background-image: url('');
+            background-size: cover;
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .info {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+        .info:hover {
+            transform: translateX(10px);
+        }
+        .label {
+            font-weight: bold;
+            color: #4CAF50;
+            margin-right: 10px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        button {
+            width: 200px;
+            padding: 15px;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.2);
+        }
+        #decompile-btn {
+            background-color: #4CAF50;
+        }
+        #decompile-btn:hover {
+            background-color: #45a049;
+        }
+        #charity-btn {
+            background-color: #FF5722;
+        }
+        #charity-btn:hover {
+            background-color: #E64A19;
+        }
+        .decoration {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(76, 175, 80, 0.3);
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="container">
+        <h1>个人介绍</h1>
+        <div class="info">
+            <span class="label">昵称：</span>
+            <span id="nickname">码农小王</span>
+        </div>
+        <div class="info">
+            <span class="label">简介：</span>
+            <span id="bio">热爱编程，专注于Web开发和人工智能</span>
+        </div>
+        <div class="info">
+            <span class="label">称号：</span>
+            <span id="title">全栈工程师</span>
+        </div>
+        <div class="info">
+            <span class="label">工作室：</span>
+            <span id="studio">创新科技工作室</span>
+        </div>
+        <div class="info">
+            <span class="label">ID：</span>
+            <span id="id">dev_xiao_wang</span>
+        </div>
+        <div class="button-container">
+            <button id="decompile-btn" onclick="decompile()">源码反编译</button>
+            <button id="charity-btn" onclick="openCharityAccounts()">公益账号库</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        function decompile() {
+            alert("源码反编译功能已触发！\n这里可以添加实际的反编译逻辑。");
+        }
+
+        function openCharityAccounts() {
+            alert("公益账号库功能已触发！\n这里可以添加打开公益账号库的逻辑。");
+        }
+
+        // 添加装饰元素
+        function addDecorations() {
+            const container = document.querySelector('.container');
+            for (let i = 0; i < 5; i++) {
+                const decoration = document.createElement('div');
+                decoration.classList.add('decoration');
+                decoration.style.left = `${Math.random() * 100}%`;
+                decoration.style.top = `${Math.random() * 100}%`;
+                decoration.style.animationDelay = `${Math.random() * 2}s`;
+                container.appendChild(decoration);
+            }
+        }
+
+        addDecorations();
+    </script>
+</body>
+</html>
