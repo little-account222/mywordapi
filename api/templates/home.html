@@ -117,15 +117,15 @@
         <div class="info">
             <span class="label">称号：</span>
             <span id="title">
-  {% if info['author_level'] == '1' %}
+  {% if info['author_level'] == 1 %}
     萌新
-  {% elif info['author_level'] == '2' %}
+  {% elif info['author_level'] == 2 %}
     潜力萌新
-  {% elif info['author_level'] == '3' %}
+  {% elif info['author_level'] == 3 %}
     进阶高手
-  {% elif info['author_level'] == '4' %}
+  {% elif info['author_level'] == 4 %}
     编程大佬
-  {% elif info['author_level'] == '5' %}
+  {% elif info['author_level'] == 5 %}
     源码传说
   {% else %}
     未知等级
