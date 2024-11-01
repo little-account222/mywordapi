@@ -4,6 +4,7 @@ from flask import Flask, request, render_template, jsonify
 from .login import login_creater
 from .kittenserver import kitten_creater
 from .attack import attack_creater
+from .personal import person_creater
 from .codemao import comfirm_account
 from json import loads
 import requests
@@ -13,6 +14,7 @@ app = Flask(__name__)
 app.register_blueprint(login_creater, url_prefix='/login') 
 app.register_blueprint(kitten_creater, url_prefix='/kitten')
 app.register_blueprint(attack_creater, url_prefix='/attack')
+app.register_blueprint(person_creater, url_prefix='/person')
 app.json.ensure_ascii = False 
 
 
