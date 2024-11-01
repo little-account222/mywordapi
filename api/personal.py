@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, make_response, render_template
 from .codemao import login, comfirm_account
-import re, requests
+import re, requests, os
 from json import loads
 person_creater = Blueprint('person', __name__)
 
@@ -32,12 +32,16 @@ def upload_file():
 def return_page(pageid):
     print(type(pageid.split('.')[1]),pageid.split('.')[1])
     _content = requests.get('https://static.codemao.cn/Fantasy/Static/'+pageid).text
-    response = make_response(_content)
-    if 'html' in pageid.split('.')[1].lower() or 'htm' in pageid.split('.').lower():
+    response = make_response(file_content)
+
+    # 根据 pageid 的扩展名设置 Content-Type 头
+    _, file_extension = os.path.splitext(pageid)
+    file_extension = file_extension.lower()
+    if file_extension in ['.html', '.htm']:
         response.headers["Content-Type"] = "text/html"
-    elif 'js' in pageid.split('.')[1].lower() or 'jsx' in pageid.split('.').lower():
+    elif file_extension in ['.js', '.jsx']:
         response.headers["Content-Type"] = "application/javascript"
-    elif 'css' in pageid.split('.')[1].lower():
+    elif file_extension in ['.css']:
         response.headers["Content-Type"] = "text/css"
     else:
         response.headers["Content-Type"] = "application/octet-stream"
