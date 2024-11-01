@@ -24,7 +24,7 @@ def upload_file():
                 info = loads(requests.post('https://upload.qiniup.com/',data={'token': info['data'][0]['token'], 'key': info['data'][0]['filename']}, files={'file': content}).text)
                 return jsonify({'active': 'successful', 'msg': 'https://dianmao.fantasywork.us.kg/page/'+re.match(pattern, info['filename']).group(1)})
             except KeyError:
-                return jsonify({'active': 'failed', 'msg': '未知错误'})
+                return jsonify({'active': 'failed', 'msg': '未知错误'+str(info)})
 
     else:
         return jsonify({'active': 'failed','msg':comfirm_account(request.cookies.get('token'))})
