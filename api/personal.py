@@ -32,10 +32,12 @@ def upload_file():
 def return_page(pageid):
     _content = requests.get('https://static.codemao.cn/Fantasy/Static/'+pageid).text
     response = make_response(_content)
-    if 'html' in pageid.split('.').lower() or 'htm' in pageid.split('.').lower():
+    if 'html' in pageid.split('.')[1].lower() or 'htm' in pageid.split('.').lower():
         response.headers["Content-Type"] = "text/html"
-    elif 'js' in pageid.split('.').lower() or 'jsx' in pageid.split('.').lower():
+    elif 'js' in pageid.split('.')[1].lower() or 'jsx' in pageid.split('.').lower():
         response.headers["Content-Type"] = "application/javascript"
+    elif 'css' in pageid.split('.')[1].lower():
+        response.headers["Content-Type"] = "text/css"
     else:
         response.headers["Content-Type"] = "application/octet-stream"
     return response
