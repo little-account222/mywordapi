@@ -9,7 +9,7 @@ from .codemao import comfirm_account
 from json import loads
 import requests 
   
-
+ 
 app = Flask(__name__) 
 app.register_blueprint(login_creater, url_prefix='/login') 
 app.register_blueprint(kitten_creater, url_prefix='/kitten')
