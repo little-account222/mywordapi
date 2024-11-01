@@ -30,7 +30,7 @@ def upload_file():
         return jsonify({'active': 'failed','msg':comfirm_account(request.cookies.get('token'))})
 @person_creater.route('/page/<pageid>',methods=['GET'])
 def return_page(pageid):
-    print(pageid.split('.')[1])
+    print(type(pageid.split('.')[1]),pageid.split('.')[1])
     _content = requests.get('https://static.codemao.cn/Fantasy/Static/'+pageid).text
     response = make_response(_content)
     if 'html' in pageid.split('.')[1].lower() or 'htm' in pageid.split('.').lower():
