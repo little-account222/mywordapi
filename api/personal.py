@@ -32,7 +32,7 @@ def upload_file():
 def return_page(pageid):
     print(type(pageid.split('.')[1]),pageid.split('.')[1])
     _content = requests.get('https://static.codemao.cn/Fantasy/Static/'+pageid).text
-    response = make_response(file_content)
+    response = make_response(_content)
 
     # 根据 pageid 的扩展名设置 Content-Type 头
     _, file_extension = os.path.splitext(pageid)
