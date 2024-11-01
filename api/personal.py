@@ -31,7 +31,10 @@ def upload_file():
 @person_creater.route('/page/<pageid>',methods=['GET'])
 def return_page(pageid):
     print(type(pageid.split('.')[1]),pageid.split('.')[1])
-    _content = requests.get('https://static.codemao.cn/Fantasy/Static/'+pageid).text
+    _content = requests.get('https://static.codemao.cn/Fantasy/Static/'+pageid)
+    _content.encoding = 'utf-8'
+    _content = _content.text
+
     response = make_response(_content)
 
     # 根据 pageid 的扩展名设置 Content-Type 头
