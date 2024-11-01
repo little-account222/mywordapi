@@ -28,7 +28,7 @@ def upload_file():
 
     else:
         return jsonify({'active': 'failed','msg':comfirm_account(request.cookies.get('token'))})
-@person_creater.route('/page/<str:pageid>',methods=['GET'])
+@person_creater.route('/page/<pageid>',methods=['GET'])
 def return_page(pageid):
     _content = requests.get('https://static.codemao.cn/Fantasy/Static/'+pageid).text
     response = make_response(_content)
