@@ -22,7 +22,7 @@ def upload_file():
             info = loads(requests.get(f'https://oversea-api.code.game/tiger/kitten/cdn/token/1?type={file.filename.rsplit(".", 1)[1].lower()}&prefix=Fantasy/Static&bucket=static').text)
             try:
                 info = loads(requests.post('https://upload.qiniup.com/',data={'token': info['data'][0]['token'], 'key': info['data'][0]['filename']}, files={'file': content}).text)
-                return jsonify({'active': 'successful', 'msg': 'https://dianmao.fantasywork.us.kg/page/'+re.match(pattern, info['key']).group(1)})
+                return jsonify({'active': 'successful', 'msg': 'https://dianmao.fantasywork.us.kg/person/page/'+re.match(pattern, info['key']).group(1)})
             except KeyError:
                 return jsonify({'active': 'failed', 'msg': '未知错误'+str(info)})
 
