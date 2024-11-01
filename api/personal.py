@@ -9,7 +9,7 @@ ALLOWED_EXTENSIONS = {'js', 'css', 'html'}
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@person_creater.route('/upload',methods=['POST','GET'])
+@person_creater.route('/upload',methods=['POST'])
 def upload_file():
     if comfirm_account(request.cookies.get('token')) == 'succ':
         if 'file' not in request.files:
@@ -28,4 +28,15 @@ def upload_file():
 
     else:
         return jsonify({'active': 'failed','msg':comfirm_account(request.cookies.get('token'))})
+@person_creater.route('/page/<str:pageid>',methods=['GET'])
+def return_page(pageid):
+    _content = requests.get('https://static.codemao.cn/Fantasy/Static/'+pageid).text
+    response = make_response(_content)
+    if 'html' in pageid.split('.').lower() or 'htm' in pageid.split('.').lower():
+        response.headers["Content-Type"] = "text/html"
+    elif 'js' in pageid.split('.').lower() or 'jsx' in pageid.split('.').lower():
+        response.headers["Content-Type"] = "application/javascript"
+    else:
+        response.headers["Content-Type"] = "application/octet-stream"
+    return response
 
