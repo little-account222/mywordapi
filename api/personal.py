@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, make_response, render_template
 from .codemao import login, comfirm_account
-import re
+import re, requests
 from json import loads
 person_creater = Blueprint('person', __name__)
 
