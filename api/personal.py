@@ -5,7 +5,7 @@ from json import loads
 person_creater = Blueprint('person', __name__)
 
 pattern = r'^Fantasy/Static/(.+)$'
-ALLOWED_EXTENSIONS = {'js', 'css', 'html', 'bcm4'}
+ALLOWED_EXTENSIONS = {'js', 'css', 'html', 'bcm4', 'exe', 'png', 'jpeg', 'xls', 'xlsx', 'txt', 'jsx', 'htm'}
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
