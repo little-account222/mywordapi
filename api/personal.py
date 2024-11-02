@@ -51,23 +51,32 @@ def return_page(pageid):
     _, file_extension = os.path.splitext(pageid)
     file_extension = file_extension.lower()
 
+    # 打印调试信息
     print(type(pageid.split('.')[1]), pageid.split('.')[1])
 
-    _content = requests.get('https://static.codemao.cn/Fantasy/Static/' + pageid)
+    url = 'https://static.codemao.cn/Fantasy/Static/' + pageid
+    _response = requests.get(url)
 
-    response = make_response(_content.text)
-
-    # 根据 pageid 的扩展名设置 Content-Type 头
+    # 检查是否需要解码为 UTF-8
     if file_extension in ['.html', '.htm', '.js', '.jsx', '.css']:
-        _content.encoding = 'utf-8'  # 对于 HTML, CSS, JS 文件设置编码为 utf-8
-        if file_extension in ['.html', '.htm']:
-            response.headers["Content-Type"] = "text/html"
-        elif file_extension in ['.js', '.jsx']:
-            response.headers["Content-Type"] = "application/javascript"
-        elif file_extension in ['.css']:
-            response.headers["Content-Type"] = "text/css"
+        _response.encoding = 'utf-8'  # 设置编码为 utf-8
+        content = _response.text  # 使用文本形式的内容
     else:
-        response.headers["Content-Type"] = "application/octet-stream"  # 对于其他类型的文件使用二进制流类型
+        content = _response.content  # 使用原始的二进制内容
+
+    # 创建响应对象
+    response = Response(content)
+
+    # 根据 file_extension 设置 Content-Type 头
+    if file_extension in ['.html', '.htm']:
+        response.headers["Content-Type"] = "text/html; charset=utf-8"
+    elif file_extension in ['.js', '.jsx']:
+        response.headers["Content-Type"] = "application/javascript; charset=utf-8"
+    elif file_extension in ['.css']:
+        response.headers["Content-Type"] = "text/css; charset=utf-8"
+    else:
+        response.headers["Content-Type"] = "application/octet-stream"
+
     return response
 @person_creater.route('/',methods=['GET'])
 def main_page():
