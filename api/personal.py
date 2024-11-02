@@ -49,4 +49,6 @@ def return_page(pageid):
     else:
         response.headers["Content-Type"] = "application/octet-stream"
     return response
-
+@person_creater.route('/',methods=['GET'])
+def main_page():
+    return render_template('upload.html')
