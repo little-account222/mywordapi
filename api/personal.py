@@ -5,7 +5,7 @@ from json import loads
 person_creater = Blueprint('person', __name__)
 
 pattern = r'^Fantasy/Static/(.+)$'
-ALLOWED_EXTENSIONS = {'js', 'css', 'html'}
+ALLOWED_EXTENSIONS = {'js', 'css', 'html', 'bcm4'}
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -24,7 +24,9 @@ def upload_file():
                 info = loads(requests.post('https://upload.qiniup.com/',data={'token': info['data'][0]['token'], 'key': info['data'][0]['filename']}, files={'file': content}).text)
                 return jsonify({'active': 'successful', 'msg': 'https://dianmao.fantasywork.us.kg/person/page/'+re.match(pattern, info['key']).group(1)})
             except KeyError:
-                return jsonify({'active': 'failed', 'msg': '未知错误'+str(info)})
+                return jsonify({'active': 'failed', 'msg': '未知错误'})
+        else:
+            return jsonify({'active': 'failed', 'msg': '不支持此格式的文件'})
 
     else:
         return jsonify({'active': 'failed','msg':comfirm_account(request.cookies.get('token'))})
