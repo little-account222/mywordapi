@@ -30,26 +30,28 @@ def upload_file():
 
     else:
         return jsonify({'active': 'failed','msg':comfirm_account(request.cookies.get('token'))})
-@person_creater.route('/page/<pageid>',methods=['GET'])
+@person_creater.route('/page/<pageid>', methods=['GET'])
 def return_page(pageid):
-    print(type(pageid.split('.')[1]),pageid.split('.')[1])
-    _content = requests.get('https://static.codemao.cn/Fantasy/Static/'+pageid)
-    _content.encoding = 'utf-8'
-    _content = _content.text
-
-    response = make_response(_content)
-
-    # 根据 pageid 的扩展名设置 Content-Type 头
     _, file_extension = os.path.splitext(pageid)
     file_extension = file_extension.lower()
-    if file_extension in ['.html', '.htm']:
-        response.headers["Content-Type"] = "text/html"
-    elif file_extension in ['.js', '.jsx']:
-        response.headers["Content-Type"] = "application/javascript"
-    elif file_extension in ['.css']:
-        response.headers["Content-Type"] = "text/css"
+
+    print(type(pageid.split('.')[1]), pageid.split('.')[1])
+
+    _content = requests.get('https://static.codemao.cn/Fantasy/Static/' + pageid)
+
+    response = make_response(_content.text)
+
+    # 根据 pageid 的扩展名设置 Content-Type 头
+    if file_extension in ['.html', '.htm', '.js', '.jsx', '.css']:
+        _content.encoding = 'utf-8'  # 对于 HTML, CSS, JS 文件设置编码为 utf-8
+        if file_extension in ['.html', '.htm']:
+            response.headers["Content-Type"] = "text/html"
+        elif file_extension in ['.js', '.jsx']:
+            response.headers["Content-Type"] = "application/javascript"
+        elif file_extension in ['.css']:
+            response.headers["Content-Type"] = "text/css"
     else:
-        response.headers["Content-Type"] = "application/octet-stream"
+        response.headers["Content-Type"] = "application/octet-stream"  # 对于其他类型的文件使用二进制流类型
     return response
 @person_creater.route('/',methods=['GET'])
 def main_page():
