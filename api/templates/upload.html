@@ -213,6 +213,8 @@
                             result.textContent = '上传失败：' + response.msg;
                             result.style.color = '#f44336';
                         }
+                        // 重置文件输入，允许再次选择同一文件
+                        fileInput.value = '';
                     }, 500);
                 } else {
                     console.error('Error:', xhr.status);
@@ -220,6 +222,8 @@
                     result.style.opacity = '1';
                     result.textContent = '上传出错，请稍后再试。';
                     result.style.color = '#f44336';
+                    // 重置文件输入，允许再次选择同一文件
+                    fileInput.value = '';
                 }
             };
 
@@ -229,6 +233,8 @@
                 result.style.opacity = '1';
                 result.textContent = '上传出错，请稍后再试。';
                 result.style.color = '#f44336';
+                // 重置文件输入，允许再次选择同一文件
+                fileInput.value = '';
             };
 
             xhr.send(formData);
