@@ -26,7 +26,7 @@ def upload_file():
             except KeyError:
                 return jsonify({'active': 'failed', 'msg': '未知错误'})
         else:
-            return jsonify({'active': 'failed', 'msg': '不支持此格式的文件'})
+            return jsonify({'active': 'failed', 'msg': '不支持此格式的文件'}) 
 
     else:
         return jsonify({'active': 'failed','msg':comfirm_account(request.cookies.get('token'))})
