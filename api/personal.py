@@ -65,7 +65,7 @@ def return_page(pageid):
         content = _response.content  # 使用原始的二进制内容
 
     # 创建响应对象
-    response = Response(content)
+    response = make_response(content)
 
     # 根据 file_extension 设置 Content-Type 头
     if file_extension in ['.html', '.htm']:
