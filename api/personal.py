@@ -34,10 +34,7 @@ def upload_file():
             # 获取上传所需的 token 和其他信息
             info = loads(requests.get(f'https://oversea-api.code.game/tiger/kitten/cdn/token/1?type={extension}&prefix=Fantasy/Static&bucket=static').text)
             try:
-                # 上传文件到指定的位置
-                if isinstance(content, str):
-                    # 如果内容是字符串，则需要将其转换为字节
-                    content = content.encode('utf-8')
+
                 response = requests.post('https://upload.qiniup.com/',
                                         data={'token': info['data'][0]['token'], 'key': info['data'][0]['filename']},
                                         files={'file': (info['data'][0]['filename'], content)})
