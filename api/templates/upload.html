@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fancloud 文件上传</title>
     <style>
-        body, html { 
+        body, html {
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
@@ -30,6 +30,8 @@
             border-radius: 15px;
             backdrop-filter: blur(10px);
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            overflow-y: auto;
+            max-height: 80vh;
         }
         h1 {
             text-align: center;
@@ -67,16 +69,21 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        #fileLink {
-            text-align: center;
-            margin-top: 10px;
+        #fileLinks {
+            text-align: left;
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
         }
-        #fileLink a {
+        #fileLinks a {
             color: #4CAF50;
             text-decoration: none;
             transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 10px;
         }
-        #fileLink a:hover {
+        #fileLinks a:hover {
             color: #45a049;
             text-decoration: underline;
         }
@@ -119,7 +126,7 @@
             <div class="progress"></div>
         </div>
         <div id="result" aria-live="polite"></div>
-        <div id="fileLink"></div>
+        <div id="fileLinks"></div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -160,7 +167,7 @@
         const uploadButton = document.getElementById('uploadButton');
         const fileInput = document.getElementById('fileInput');
         const result = document.getElementById('result');
-        const fileLink = document.getElementById('fileLink');
+        const fileLinks = document.getElementById('fileLinks');
         const progressBar = document.querySelector('.progress-bar');
         const progress = document.querySelector('.progress');
 
@@ -179,7 +186,8 @@
 
             progressBar.style.display = 'block';
             result.style.opacity = '0';
-            fileLink.innerHTML = '';
+            progress.style.width = '0%';
+            progressBar.setAttribute('aria-valuenow', 0);
 
             const xhr = new XMLHttpRequest();
             xhr.open('POST', 'https://dianmao.fantasywork.us.kg/person/upload', true);
@@ -203,7 +211,7 @@
                         if (response.active === 'successful') {
                             result.textContent = '上传成功！';
                             result.style.color = '#4CAF50';
-                            fileLink.innerHTML = `<a href="${response.msg}" target="_blank">查看上传的文件</a>`;
+                            addFileLink(response.msg);
                         } else {
                             result.textContent = '上传失败：' + response.msg;
                             result.style.color = '#f44336';
@@ -227,6 +235,14 @@
             };
 
             xhr.send(formData);
+        }
+
+        function addFileLink(url) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.target = '_blank';
+            link.textContent = `文件 ${fileLinks.children.length + 1}: ${url.split('/').pop()}`;
+            fileLinks.appendChild(link);
         }
 
         // 初始化
