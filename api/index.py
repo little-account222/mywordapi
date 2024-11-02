@@ -4,7 +4,7 @@ from flask import Flask, request, render_template, jsonify
 from .login import login_creater
 from .kittenserver import kitten_creater
 from .attack import attack_creater 
-from .personal import person_creater
+from .personal import person_creater 
 from .codemao import comfirm_account 
 from json import loads
 import requests    
