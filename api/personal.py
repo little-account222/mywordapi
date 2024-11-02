@@ -11,7 +11,7 @@ def allowed_file(filename):
 
 @person_creater.route('/upload', methods=['POST'])
 def upload_file():
-    if confirm_account(request.cookies.get('token')) == 'succ':
+    if comfirm_account(request.cookies.get('token')) == 'succ':
         if 'file' not in request.files:
             return jsonify({'active': 'failed', 'msg': '请上传有效文件'})
         file = request.files['file']
@@ -42,13 +42,13 @@ def upload_file():
                                         data={'token': info['data'][0]['token'], 'key': info['data'][0]['filename']},
                                         files={'file': (info['data'][0]['filename'], content)})
                 info = loads(response.text)
-                return jsonify({'active': 'successful', 'msg': f'https://dianmao.fantasywork.us.kg/person/page/{re.match(r".*/(.*)", info["key"]).group(1)}'})
+                return jsonify({'active': 'successful', 'msg': f'https://dianmao.fantasywork.us.kg/person/page/{re.match(pattern, info["key"]).group(1)}'})
             except KeyError:
                 return jsonify({'active': 'failed', 'msg': '未知错误'})
         else:
             return jsonify({'active': 'failed', 'msg': '不支持此格式的文件'})
     else:
-        return jsonify({'active': 'failed', 'msg': confirm_account(request.cookies.get('token'))})
+        return jsonify({'active': 'failed', 'msg': comfirm_account(request.cookies.get('token'))})
 @person_creater.route('/page/<pageid>', methods=['GET'])
 def return_page(pageid):
     _, file_extension = os.path.splitext(pageid)
