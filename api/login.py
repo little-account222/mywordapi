@@ -15,7 +15,7 @@ def index():
         token = login(username,password)
         if token:
             response = make_response(jsonify({'active':'successful','msg':token}))
-            response.set_cookie('token', token, max_age=60 * 60 * 24 * 3)
+            response.set_cookie('token', token, httponly=True)
             return response
         else:
             return jsonify({'active':'failed','msg':'账号或密码错误'})
